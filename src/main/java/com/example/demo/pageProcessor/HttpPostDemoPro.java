@@ -133,7 +133,7 @@ public class HttpPostDemoPro {
             HttpGet httpGet = new HttpGet(welcomeUrl);
             httpGet.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3095.5 Safari/537.36");
             httpGet.addHeader("Referer", "https://ipcrs.pbccrc.org.cn/login.do");
-            httpGet.addHeader("Cookie",cookieStr);
+            httpGet.addHeader("Cookie", cookieStr);
             CloseableHttpResponse welcomeResponse = httpClient.execute(httpGet);
             String welcomeResult = EntityUtils.toString(welcomeResponse.getEntity());
             System.out.println("welcomeResult = " + welcomeResult);

@@ -2,8 +2,6 @@ package com.example.demo.pageProcessor;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Consts;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -22,14 +20,11 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.selector.Html;
-import us.codecraft.webmagic.selector.Selectable;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -120,7 +115,7 @@ public class HttpPostDemo {
             //**********************初始页面************************
             String indexUrl = "https://ipcrs.pbccrc.org.cn/login.do?method=initLogin";
             HttpGet indexHttpGet = new HttpGet(indexUrl);
-            indexHttpGet.addHeader("Referer","https://ipcrs.pbccrc.org.cn/index1.do");
+            indexHttpGet.addHeader("Referer", "https://ipcrs.pbccrc.org.cn/index1.do");
             CloseableHttpResponse indexResponse = httpClient.execute(indexHttpGet);
             String indexResult = EntityUtils.toString(indexResponse.getEntity());
             Html html = new Html(indexResult);
@@ -131,7 +126,7 @@ public class HttpPostDemo {
 //            Header cookie = indexResponse.getFirstHeader("Cookie");
             //**********************验证码**************************
             HttpGet imgrcHttpGet = new HttpGet(imgrcUrl);
-            imgrcHttpGet.addHeader("Referer","https://ipcrs.pbccrc.org.cn/page/login/loginreg.jsp");
+            imgrcHttpGet.addHeader("Referer", "https://ipcrs.pbccrc.org.cn/page/login/loginreg.jsp");
 //            imgrcHttpGet.addHeader(cookie);
             CloseableHttpResponse imgrcResponse = httpClient.execute(imgrcHttpGet);
             byte[] imageBytes = IOUtils.toByteArray(imgrcResponse.getEntity().getContent());
@@ -171,12 +166,12 @@ public class HttpPostDemo {
             String reportState = "未申请";
             Html welcomHtml = new Html(welcomeResult);
             List<String> pList = welcomHtml.xpath("//div[@class='right_con1']/p[@class='p1 span-14 span-grey2']/text()").all();
-            for(String p : pList){
-                if(p.contains("您的个人信用报告")){
-                    reportState = p.replace("您的个人信用报告","").trim();
+            for (String p : pList) {
+                if (p.contains("您的个人信用报告")) {
+                    reportState = p.replace("您的个人信用报告", "").trim();
                 }
             }
-            if(!reportState.equals("加工成功")){
+            if (!reportState.equals("加工成功")) {
                 return;
             }
             //*********************身份验证*****************************
@@ -210,7 +205,7 @@ public class HttpPostDemo {
             CloseableHttpResponse reportResponse2 = httpClient.execute(reportHttpPost2);
 //            String reportResult2 = EntityUtils.toString(reportResponse2.getEntity());
 //            System.out.println("reportResult2 = " + reportResult2);
-            Files.write(Paths.get("D:/report.html"),IOUtils.toByteArray(reportResponse2.getEntity().getContent()));
+            Files.write(Paths.get("D:/report.html"), IOUtils.toByteArray(reportResponse2.getEntity().getContent()));
         } catch (Exception e) {
             e.printStackTrace();
         }

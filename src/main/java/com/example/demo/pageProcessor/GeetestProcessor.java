@@ -18,7 +18,7 @@ public class GeetestProcessor implements PageProcessor {
     public Site getSite() {
         return Site.me().setAcceptStatCode(new HashSet<Integer>() {{
             add(200);
-        }}).setCycleRetryTimes(3).setRetrySleepTime(998).setRetryTimes(3).setRetrySleepTime(997).setTimeOut(60 * 1000).setDomain("www.gsxt.gov.cn").setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3095.5 Safari/537.36").addHeader("Referer","http://www.gsxt.gov.cn/corp-query-search-1.html");
+        }}).setCycleRetryTimes(3).setRetrySleepTime(998).setRetryTimes(3).setRetrySleepTime(997).setTimeOut(60 * 1000).setDomain("www.gsxt.gov.cn").setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3095.5 Safari/537.36").addHeader("Referer", "http://www.gsxt.gov.cn/corp-query-search-1.html");
     }
 
     public static void main(String[] args) {
