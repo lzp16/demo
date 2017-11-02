@@ -44,8 +44,8 @@ public class PbccrcProcessor implements PageProcessor {
             map.put("org.apache.struts.taglib.html.TOKEN",token);
             map.put("method",urlMethod);
             map.put("date",date);
-            map.put("loginname","110Roey");
-            map.put("password","lzp110");
+            map.put("loginname","panlefeng");
+            map.put("password","plfplf520921");
             System.out.println("请输入_@IMGRC@：");
             Scanner scanner = new Scanner(System.in);
             map.put("_@IMGRC@",scanner.nextLine());
