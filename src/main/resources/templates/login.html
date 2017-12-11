@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>玩转spring boot——简单登录认证</title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
+    <script src="https://static.geetest.com/static/tools/gt.js"></script>
+    <script src="https://api.geetest.com/get.php"></script>
+    <!--<script type="text/javascript">-->
+        <!--/*<![CDATA[*/-->
+        <!--var app = angular.module('app', []);-->
+        <!--app.controller('MainController', function($rootScope, $scope, $http) {-->
+            <!--$scope.message = '';-->
+            <!--$scope.account = '';-->
+            <!--$scope.password = '';-->
+            <!--//登录-->
+            <!--$scope.login = function() {-->
+                <!--$scope.message = '';-->
+                <!--$http(-->
+                    <!--{-->
+                        <!--url : '/loginPost',-->
+                        <!--method : 'POST',-->
+                        <!--headers : {-->
+                            <!--'Content-Type' : 'application/x-www-form-urlencoded'-->
+                        <!--},-->
+                        <!--data : 'account=' + $scope.account + '&password='-->
+                        <!--+ $scope.password-->
+                    <!--}).success(function(r) {-->
+                    <!--if (!r.success) {-->
+                        <!--$scope.message = r.message;-->
+                        <!--return;-->
+                    <!--}-->
+                    <!--window.location.href = '/';-->
+                <!--});-->
+            <!--}-->
+        <!--});-->
+        <!--/*]]>*/-->
+    <!--</script>-->
+</head>
+<body ng-app="app" ng-controller="MainController">
+<h1>玩转spring boot——简单登录认证</h1>
+<h4>
+    <a href="http://www.cnblogs.com/GoodHelper/">from 刘冬的博客</a>
+</h4>
+<form action="/loginPost" method="post">
+    <div class="row">
+        <div id="captcha"></div>//滑动图片验证弹出层
+        <script src="https://static.geetest.com/static/tools/gt.js"></script>
+        <script>
+            var handler = function (captchaObj) {
+                // 将验证码加到id为captcha的元素里
+                captchaObj.appendTo("#captcha");//弹出层
+                captchaObj.bindOn("#loginSubmit");//弹出模式指定的触发事件
+            };
+            $.ajax({
+                // 获取id，challenge，success（是否启用failback）
+                url: "https://sso.yoju360.com/gt/init.do",//将调用这个接口进行初始化，这是我本地方法。后面会有介绍如何使用，若是http协议，直接改为http即可
+                type: "get",
+                dataType: "json", // 使用jsonp格式
+                success: function (data) {
+                    if(data!=null){
+                        // 使用initGeetest接口
+                        // 参数1：配置参数，与创建Geetest实例时接受的参数一致
+                        // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+                        initGeetest({
+                            gt: data.gt,
+                            challenge: data.challenge,
+                            product: "popup", // 产品形式 弹出
+                            https : true,
+                            offline: !data.success
+                        }, handler);
+                    }
+                }
+            });
+        </script>
+<table cellspacing="1" style="background-color: #a0c6e5">
+    <tr>
+        <td>账号：</td>
+        <td><input ng-model="account" /></td>
+    </tr>
+    <tr>
+        <td>密码：</td>
+        <td><input type="password" ng-model="password" /></td>
+    </tr>
+</table>
+<input type="button" value="登录" ng-click="login()" />
+<br />
+<font color="red" ng-show="message">{{message}}</font>
+</form>
+<br />
+<a href="http://www.cnblogs.com/GoodHelper/">点击访问原版博客(www.cnblogs.com/GoodHelper)</a>
+</body>
+</html>
