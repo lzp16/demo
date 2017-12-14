@@ -22,3 +22,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/mvnw
+/mvnw.cmd
+/.mvn/
+src/main/java/com/example/demo/controller/
+src/main/java/com/example/demo/downloader/
+src/main/resources/fonts/
