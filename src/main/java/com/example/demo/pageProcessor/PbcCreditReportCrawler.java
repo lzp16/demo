@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class HttpPostDemo {
+public class PbcCreditReportCrawler {
 
     public static CloseableHttpClient createHttpClient() throws KeyManagementException, NoSuchAlgorithmException {
         //采用绕过验证的方式处理https请求

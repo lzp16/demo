@@ -11,12 +11,14 @@ import java.util.List;
  * Created by LiZhanPing on 2017/12/10.
  */
 public class CookieUtil {
-    public static List<Cookie> str2Cookies(String cookies){
+    public static List<Cookie> str2Cookies(String cookies,String domain){
         List<Cookie> cookieList = new ArrayList<>();
         String[] cookieStrs = cookies.split(";");
         for(String cookieStr : cookieStrs){
             String[] keyValue = cookieStr.trim().split("=");
-            Cookie cookie = new BasicClientCookie(keyValue[0],keyValue[1]);
+            BasicClientCookie cookie = new BasicClientCookie(keyValue[0],keyValue[1]);
+            cookie.setDomain(domain);
+            cookie.setPath("/");
             cookieList.add(cookie);
         }
         return cookieList;
@@ -28,7 +30,7 @@ public class CookieUtil {
         }
     }
 
-    public static void setCookies(CookieStore cookieStore,String cookies){
-        setCookies(cookieStore,str2Cookies(cookies));
+    public static void setCookies(CookieStore cookieStore,String cookies,String domian){
+        setCookies(cookieStore,str2Cookies(cookies,domian));
     }
 }
