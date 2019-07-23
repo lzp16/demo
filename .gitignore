@@ -28,3 +28,6 @@ nbdist/
 src/main/java/com/example/demo/controller/
 src/main/java/com/example/demo/downloader/
 src/main/resources/fonts/
+/target/
+/demo.iml
+/.idea/

@@ -56,16 +56,13 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
-            <groupId>org.zefer</groupId>
-            <artifactId>pd4ml-370fx2pro</artifactId>
-            <version>1.0.0</version>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>5.0.0.Alpha1</version>
         </dependency>
-        <dependency>
-            <groupId>org.zefer</groupId>
-            <artifactId>ss_css2</artifactId>
-            <version>2.0.0</version>
-        </dependency>
+
     </dependencies>
 
     <build>
