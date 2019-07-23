@@ -8,3 +8,4 @@
     + 阻塞队列BlockingQueue的实现
     + 信号量Semaphore的实现：通过释放令牌的形式去控制生产者消费者的上限，使用互斥锁保证每次最多只有一个角色去修改共享变量。
     + 管道输入输出流PipedInputStream和PipedOutputStream的实现,这种只能是1对1的，不做实现了
+    + 使用Disruptor框架
